@@ -5,6 +5,7 @@ import com.bootcamp.operacion.Repository.entities.OperacionEntity;
 import com.bootcamp.operacion.businees.OperacionService;
 import com.bootcamp.operacion.model.entity.Operacion;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -28,6 +29,7 @@ public class OperacionServiceImpl implements OperacionService {
     }
 
     @Override
+    @Cacheable("findAllBy")
     public Mono<Operacion> findAllBy(String id){
         return OperacionRepository.findById(id)
                 .map(OperacionEntity::toOperacion);

@@ -5,20 +5,25 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Builder
 @Getter
 @Setter
 @AllArgsConstructor
 //@JsonInclude(JsonInclude.Include.NON_NULL)
-public class Operacion {
+public class Operacion implements Serializable {
     @Id
     private String id;
-    private String cuentaId;
     private String cuentaDestino;
-    private String monto;
-    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private String fechaHoraOperacion;
+    private BigDecimal monto;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fechaHoraOperacion;
     private String descripcion;
+    private String cuentaId;
 
 }
